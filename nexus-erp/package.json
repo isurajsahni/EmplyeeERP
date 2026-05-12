@@ -1,0 +1,14 @@
+{
+  "name": "nexus-erp",
+  "version": "1.0.0",
+  "description": "Nexus ERP — Full-stack MERN Enterprise Management Platform",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "install:all": "cd client && npm install && cd ../server && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexus ERP - Attendance &amp; EOD Review</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#faf8ff",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "on-tertiary-container": "#ffede6",
+                    "secondary-container": "#d0e1fb",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#e1e2ed",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#54647a",
+                    "background": "#faf8ff",
+                    "surface-tint": "#0053db",
+                    "inverse-surface": "#2e3039",
+                    "on-primary-fixed": "#00174b",
+                    "surface-bright": "#faf8ff",
+                    "surface-container-high": "#e7e7f3",
+                    "on-primary-container": "#eeefff",
+                    "surface-container": "#ededf9",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-secondary-fixed": "#0b1c30",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "tertiary-container": "#bc4800",
+                    "outline-variant": "#c3c6d7",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f3f3fe",
+                    "primary-container": "#2563eb",
+                    "primary": "#004ac6",
+                    "on-surface-variant": "#434655",
+                    "on-background": "#191b23",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "outline": "#737686",
+                    "surface-container-highest": "#e1e2ed",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "primary-fixed": "#dbe1ff",
+                    "inverse-primary": "#b4c5ff",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-surface": "#191b23",
+                    "secondary": "#505f76",
+                    "surface-dim": "#d9d9e5",
+                    "inverse-on-surface": "#f0f0fb",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "secondary-fixed": "#d3e4fe",
+                    "tertiary": "#943700"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "container-margin": "24px",
+                    "input-padding": "8px 12px",
+                    "grid-gutter": "16px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {},
+            "fontSize": {
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "h3": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "h2": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-base": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "table-data": [
+                            "13px",
+                            {
+                                    "lineHeight": "18px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h1": [
+                            "30px",
+                            {
+                                    "lineHeight": "36px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar -->
+<aside class="flex flex-col h-full py-stack-lg border-r border-outline-variant w-64 fixed left-0 top-0 z-50 bg-surface-container-low dark:bg-on-background">
+<div class="px-container-margin mb-stack-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">corporate_fare</span>
+</div>
+<div>
+<h1 class="font-h3 text-h3 font-bold text-primary dark:text-primary-fixed">Admin Console</h1>
+<p class="font-label-caps text-label-caps text-outline">Enterprise Management</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-secondary-fixed-dim/10 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-secondary-fixed-dim/10 transition-all" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-caps text-label-caps">Team Productivity</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary dark:text-primary-fixed bg-secondary-container dark:bg-on-secondary-fixed-variant border-l-4 border-primary transition-all" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-caps text-label-caps">Attendance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-secondary-fixed-dim/10 transition-all" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-caps text-label-caps">Tasks</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-secondary-fixed-dim/10 transition-all" href="#">
+<span class="material-symbols-outlined">person_search</span>
+<span class="font-label-caps text-label-caps">Employee Directory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-secondary-fixed-dim/10 transition-all" href="#">
+<span class="material-symbols-outlined">security</span>
+<span class="font-label-caps text-label-caps">Permissions</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-3 rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add_chart</span>
+                New Report
+            </button>
+<div class="pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-container-margin h-16 sticky top-0 z-40 bg-surface/95 backdrop-blur-sm border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-6 flex-1">
+<h2 class="font-h2 text-h2 font-bold text-primary dark:text-primary-fixed">Nexus ERP</h2>
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-lg border border-outline-variant bg-surface-container-low focus:ring-2 focus:ring-primary focus:border-transparent font-body-sm text-body-sm" placeholder="Search logs, reports, or employees..." type="text"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-outline font-bold border border-outline-variant px-1.5 rounded bg-surface">CMD+K</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<img alt="Manager Avatar" class="w-10 h-10 rounded-full border-2 border-primary object-cover" data-alt="A professional headshot of a middle-aged corporate manager with a friendly expression. He is wearing a sharp navy blue blazer and a light blue dress shirt. The background is a blurred office environment with soft morning light filtering through glass windows, creating a clean, modern corporate aesthetic that aligns with a high-end ERP interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnBaxv9hwHLh42f-QetKQVX1oItr4u0bupOnYb87HRIY0QydKokd1F2N85oNet3hFCVwcj--OBreEli3xvwU52GFtfKn1N-_nlkhtMPy26da-2I9R-FWlB4vnuCQfHRnHVJF1pX_p0drIuY4RMGRKCt1afnoHkF_xylIlLlKrTilU6DrhJPHb-8AFlSxHfwqCkNU4_MqwuuNF3PJ3ujs2TkoB9ckX8zjOyYzkKu46KT5asm7VkDbfb2H0vugXyqDWg97VAMjKL6Ao"/>
+</div>
+</header>
+<!-- Content Shell -->
+<div class="p-container-margin space-y-grid-gutter">
+<!-- Page Header Actions -->
+<div class="flex justify-between items-end">
+<div>
+<h1 class="font-h1 text-h1 text-on-surface">Attendance &amp; EOD Review</h1>
+<p class="font-body-base text-body-base text-on-surface-variant">Reviewing logs for Wednesday, Oct 25, 2023</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-caps text-label-caps flex items-center gap-2 hover:shadow-lg transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">file_download</span>
+                    Generate Monthly Report
+                </button>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-12 gap-grid-gutter">
+<!-- Left Pane: Attendance Calendar & List -->
+<div class="col-span-12 lg:col-span-7 space-y-grid-gutter">
+<!-- Stats Bar -->
+<div class="grid grid-cols-3 gap-stack-md">
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl border border-outline-variant">
+<p class="font-label-caps text-label-caps text-outline">Present Today</p>
+<h3 class="font-h1 text-h1 text-primary">42 <span class="text-h3 text-outline">/ 45</span></h3>
+</div>
+<div class="bg-error-container p-stack-lg rounded-xl border border-error">
+<p class="font-label-caps text-label-caps text-on-error-container">Pending EODs</p>
+<h3 class="font-h1 text-h1 text-error">12</h3>
+</div>
+<div class="bg-secondary-container p-stack-lg rounded-xl border border-outline-variant">
+<p class="font-label-caps text-label-caps text-on-secondary-container">Approved Reports</p>
+<h3 class="font-h1 text-h1 text-on-secondary-fixed-variant">28</h3>
+</div>
+</div>
+<!-- Attendance Table Container -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<div class="p-stack-lg border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<div class="flex items-center gap-4">
+<h3 class="font-h3 text-h3">Daily Attendance Logs</h3>
+<div class="flex items-center gap-2 bg-surface px-3 py-1 rounded border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+<span class="font-body-sm text-body-sm">Oct 25, 2023</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-outline">Filter:</span>
+<select class="bg-surface border-outline-variant rounded font-label-caps text-label-caps px-2 py-1">
+<option>All Staff</option>
+<option>Engineering</option>
+<option>Design</option>
+</select>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container font-label-caps text-label-caps text-on-surface-variant">
+<tr>
+<th class="px-6 py-4">Employee</th>
+<th class="px-6 py-4">Check-In</th>
+<th class="px-6 py-4">Check-Out</th>
+<th class="px-6 py-4">EOD Status</th>
+<th class="px-6 py-4">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-on-primary-fixed text-xs">JD</div>
+<div>
+<p class="font-body-sm text-body-sm font-bold">John Doe</p>
+<p class="text-[10px] text-outline">Senior Developer</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-table-data text-table-data">09:12 AM</td>
+<td class="px-6 py-4 font-table-data text-table-data">--:--</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-error-container text-error rounded-full font-label-caps text-[10px] border border-error/20 flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-[12px]">error</span> MISSING
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<button class="text-primary hover:underline font-label-caps text-label-caps">Nudge</button>
+</td>
+</tr>
+<tr class="bg-surface-container-low">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A portrait of a professional female employee in a modern creative studio. She is smiling gently at the camera, wearing a minimalist black turtleneck. The lighting is warm and cinematic, highlighting her features against a blurred background of office greenery and architectural design elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlLQ-DOSX0oIYFD0r7cfiOBE-wGj8TMpyU-iy9KqbBtHO7ptle3XRz4DOaPNtHClQHm6heSplJ8Opmys3xBNfiljPVMD8JzBPzWgedc1kkanfi-pJg8elXyrwfups4VbTvE36uMYvwB4F73CBZ6nBxfWxWj_bZAMeTITdilH_dmN0sQBzwlV-fMvTQVPYyIOzZNCicK_W4wlz6awhDXurB_1MYdKAkvV9abBjNTvw-Ka6o2s_ADY2XhYjNa_XVdtZAN47__tkOfnU"/>
+<div>
+<p class="font-body-sm text-body-sm font-bold">Sarah Chen</p>
+<p class="text-[10px] text-outline">Lead Designer</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-table-data text-table-data">08:45 AM</td>
+<td class="px-6 py-4 font-table-data text-table-data">06:15 PM</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-[10px] border border-outline-variant flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-[12px]" data-weight="fill">check_circle</span> SUBMITTED
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<button class="text-primary hover:underline font-label-caps text-label-caps">Review</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center font-bold text-on-tertiary-fixed text-xs">MW</div>
+<div>
+<p class="font-body-sm text-body-sm font-bold">Marcus Wright</p>
+<p class="text-[10px] text-outline">Product Manager</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-table-data text-table-data">09:05 AM</td>
+<td class="px-6 py-4 font-table-data text-table-data">05:50 PM</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-on-primary-container text-primary rounded-full font-label-caps text-[10px] border border-primary/20 flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-[12px]" data-weight="fill">verified</span> APPROVED
+                                            </span>
+</td>
+<td class="px-6 py-4">
+<button class="text-outline cursor-default font-label-caps text-label-caps">View Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Pane: EOD Review Reviewer -->
+<div class="col-span-12 lg:col-span-5">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm h-full flex flex-col">
+<div class="p-stack-lg border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-lg object-cover" data-alt="A close-up portrait of Sarah Chen, a professional designer in her 30s. She is shown in a bright, airy workspace with soft natural light. Her expression is focused and capable. The aesthetic is clean and modern, consistent with a high-productivity enterprise software environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOC_wd-4CbQfp0OdTU0Dpie576qdtbjD0TMQcU8YQ44vPaP9a4diJ3GmiCBOg1yf8NC4kKoCNKaxWqXKO3DSMnBCzeljKBqtI4fquE9GXwtZ6M3HCG-bKD4GE-KUxQ9MYYMIlDYXOLhqVsg0LSQGggb5ILQDBUZiMtu24AweKkoAdJ6gpdrqsHrowedjbtDUjdFNrvrn4c8SkIccix3VCtrJ_rZkdzWm1YqqHCIc_MyMB2-BQlL_UGAko_50oVjZcCpImJQKF9VTw"/>
+<div>
+<h3 class="font-h3 text-h3">Sarah Chen</h3>
+<p class="font-body-sm text-body-sm text-outline">EOD Report • Today, Oct 25</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg border border-outline-variant text-outline hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 rounded-lg border border-outline-variant text-outline hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex-1 p-stack-lg space-y-6 overflow-y-auto max-h-[600px]">
+<!-- Completed Section -->
+<section class="space-y-3">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+<h4 class="font-label-caps text-label-caps">What was completed</h4>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border-l-4 border-primary space-y-2">
+<p class="font-body-sm text-body-sm text-on-surface">• Finalized high-fidelity mockups for the Inventory Management module.</p>
+<p class="font-body-sm text-body-sm text-on-surface">• Conducted user testing with 3 warehouse supervisors.</p>
+<p class="font-body-sm text-body-sm text-on-surface">• Updated the design system tokens for Dark Mode compliance.</p>
+</div>
+</section>
+<!-- Pending Section -->
+<section class="space-y-3">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-[20px]">pending</span>
+<h4 class="font-label-caps text-label-caps">Pending / In-Progress</h4>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border-l-4 border-secondary space-y-2">
+<p class="font-body-sm text-body-sm text-on-surface">• Reviewing accessibility feedback from the Dev team.</p>
+<p class="font-body-sm text-body-sm text-on-surface">• Handover documentation for the UI kit v2.4.</p>
+</div>
+</section>
+<!-- Blockers Section -->
+<section class="space-y-3">
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<h4 class="font-label-caps text-label-caps">Blockers</h4>
+</div>
+<div class="bg-error-container/30 p-4 rounded-lg border-l-4 border-error space-y-2">
+<p class="font-body-sm text-body-sm text-on-error-container font-medium">• Waiting for the final API documentation on the GraphQL endpoints to finalize the data table interactions.</p>
+</div>
+</section>
+<!-- Manager Feedback -->
+<section class="space-y-3 pt-4 border-t border-outline-variant">
+<h4 class="font-label-caps text-label-caps text-outline">Manager Review &amp; Comments</h4>
+<textarea class="w-full h-24 p-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-transparent font-body-sm text-body-sm resize-none" placeholder="Add a comment or feedback..."></textarea>
+</section>
+</div>
+<div class="p-stack-lg border-t border-outline-variant bg-surface-container-low flex gap-3">
+<button class="flex-1 bg-primary text-on-primary font-label-caps text-label-caps py-3 rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                                Approve Report
+                            </button>
+<button class="px-4 py-3 border border-outline-variant text-on-surface-variant font-label-caps text-label-caps rounded-lg hover:bg-surface-container-high transition-all">
+                                Request Edit
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Contextual Information Card -->
+<div class="bg-primary/5 border border-primary/20 rounded-xl p-6 flex items-center gap-6">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">lightbulb</span>
+</div>
+<div>
+<h4 class="font-h3 text-h3 text-primary">Smart Insight</h4>
+<p class="font-body-base text-body-base text-on-surface-variant max-w-2xl">
+                        Team attendance is up by 8% this week. However, 15% of staff are submitting EOD reports after 7:00 PM. Consider reviewing workload distribution during the next team sync.
+                    </p>
+</div>
+<button class="ml-auto text-primary font-label-caps text-label-caps hover:underline">View Analytics</button>
+</div>
+</div>
+</main>
+</body></html>

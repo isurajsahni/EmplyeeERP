@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        outline: "#737686",
+                        "surface-container": "#ededf9",
+                        "surface-tint": "#0053db",
+                        "on-primary": "#ffffff",
+                        primary: "#004ac6",
+                        "on-surface": "#191b23",
+                        "surface-variant": "#e1e2ed",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-low": "#f3f3fe",
+                        "surface-container-lowest": "#ffffff"
+                    }
+                }
+            }
+        };
+    </script>
+    <style> .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; } body { background-color: #F8FAFC; } </style>
+</head>
+<body class="text-on-surface">
+    <main class="md:ml-64 min-h-screen">
+        <header class="flex justify-between items-center w-full px-6 h-16 sticky top-0 z-50 bg-white border-b border-outline-variant">
+            <h1 class="font-bold text-2xl text-primary">Settings & Administration</h1>
+        </header>
+        <section class="p-6 max-w-5xl mx-auto space-y-6">
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Sidebar Nav for Settings -->
+                <div class="w-full md:w-64 space-y-1">
+                    <button class="w-full text-left px-4 py-2 rounded-lg bg-primary/10 text-primary font-semibold">Workspace Settings</button>
+                    <button class="w-full text-left px-4 py-2 rounded-lg hover:bg-surface-container-low text-gray-600">User Management</button>
+                    <button class="w-full text-left px-4 py-2 rounded-lg hover:bg-surface-container-low text-gray-600">Roles & Permissions</button>
+                    <button class="w-full text-left px-4 py-2 rounded-lg hover:bg-surface-container-low text-gray-600">Security & Audit</button>
+                    <button class="w-full text-left px-4 py-2 rounded-lg hover:bg-surface-container-low text-gray-600">Integrations (API)</button>
+                </div>
+                <!-- Main Settings Content -->
+                <div class="flex-1 space-y-6">
+                    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+                        <h3 class="text-xl font-bold mb-4">Workspace Details</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Company Name</label>
+                                <input type="text" class="w-full border border-outline-variant rounded-lg p-2 focus:ring-2 focus:ring-primary outline-none" value="Acme Corporation"/>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Subdomain</label>
+                                <div class="flex items-center">
+                                    <input type="text" class="w-full border border-outline-variant rounded-l-lg p-2 outline-none" value="acme"/>
+                                    <span class="bg-surface-container-low border border-l-0 border-outline-variant rounded-r-lg px-4 py-2 text-gray-500">.nexus.app</span>
+                                </div>
+                            </div>
+                            <div class="pt-4 border-t border-outline-variant">
+                                <h4 class="font-bold mb-2">Branding</h4>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-16 h-16 bg-surface-container-low border border-outline-variant rounded-lg flex items-center justify-center cursor-pointer">
+                                        <span class="material-symbols-outlined text-gray-400">add_photo_alternate</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold">Upload Logo</p>
+                                        <p class="text-xs text-gray-500">Recommended size: 256x256px</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-4 flex justify-end">
+                                <button type="button" class="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
